@@ -75,7 +75,6 @@
 "/voice/guides/outbound-calls": "/voice/voice-api/guides/outbound-calls"
 "/voice/guides/record-calls-and-conversations": "/voice/voice-api/guides/record-calls-and-conversations"
 "/voice/guides/call-a-websocket": "/voice/voice-api/guides/call-a-websocket"
-<<<<<<< HEAD
 "/voice/guides/ncco-reference": "/voice/voice-api/ncco-reference"
 "/voice/voice-api/websockets": "/voice/voice-api/guides/websockets"
 "/voice/voice-api/api-reference": "/api/voice"
