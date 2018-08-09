@@ -83,7 +83,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NewReportForbiddenResp'
-  "/v1/reports/{report_id}":
+  "/v1/reports/{request_id}":
     get:
       summary: Get status of report
       description: Retrieve status and metadata about a requested report.
@@ -114,7 +114,7 @@ paths:
             type: string
             minLength: 16
             maxLength: 16
-        - name: report_id
+        - name: request_id
           in: path
           schema:
             type: string
@@ -329,6 +329,10 @@ components:
         conversation_uuid:
           type: string
           description: For voice call data, this is used to filter the report to only contain calls belonging to a particular conversation.
+        file_id:
+          type: string
+          description: The UUID of the report file which is used to download the report via the Media API.
+          example: aaaaaaaa-bbbb-cccc-dddd-0123456789ab
         url:
           type: string
           description: The URI from which the report can be downloaded. Only appears once report status has changed to SUCCESS.
