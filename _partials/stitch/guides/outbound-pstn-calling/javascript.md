@@ -16,7 +16,7 @@ This guide will introduce you to the following concepts.
 ## Before you begin
 
 - Run through the [previous guide](/stitch/in-app-voice/guides/calling-users/javascript)
-- Read the [Outbound PSTN Calling NCCO guide](/stitch/in-app-voice/ncco-guide) before completing this guide. In order to make an outbound phone call(over the telephony or otherwise called, PSTN network), you'll have to correctly link your application to an answer url with an NCCO. The NCCO guide goes into further detail.
+- Read the [NCCO for Outbound Phone Calls guide](/stitch/in-app-voice/ncco-guide) before completing this guide. In order to make an outbound phone call(over the telephony or otherwise called, PSTN network), you'll have to correctly link your application to an answer url with an NCCO. The NCCO guide goes into further detail.
 
 
 ## 1 - Update the JavaScript App
