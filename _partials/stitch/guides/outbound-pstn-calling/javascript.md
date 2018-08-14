@@ -11,7 +11,7 @@ In this getting started guide we'll cover adding call methods to make phone call
 
 This guide will introduce you to the following concepts.
 
-**Calls** - a method for calling a User in your application. The method essentially wraps the creation of a conversation, adding users to it and finally the audio enabling and disabling for you. At the same time it also generates a Call object.
+**Phone Calls** - a method for calling a phone device from your application. The method works just like the `call()` method we covered in the previous App to App Call Guide. So essentially `callPhone()` wraps the creation of a conversation, adding users to it and finally the audio enabling and disabling for you. At the same time it also generates a Call object.
 
 ## Before you begin
 
@@ -59,6 +59,7 @@ this.callPhoneForm.addEventListener('submit', (event) => {
   this.app.callPhone(this.callPhoneForm.children.phonenumber.value)
 })
 ```
+Note that this method will create a brand new conversation object for the call. If you would like the interaction to be part of an already existing conversation, you can do so through the NCCO. Read more about how to do that via the [NCCO Reference](/stitch/in-app-voice/ncco-guide).
 
 ### 1.3 - Open the conversation a browser window
 
