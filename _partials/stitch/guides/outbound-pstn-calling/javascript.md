@@ -3,20 +3,20 @@ title: JavaScript
 language: javascript
 ---
 
-# Outbound PSTN Calling guide for JavaScript
+# App to Phone Calls for JavaScript
 
-In this getting started guide we'll cover adding call methods for phone numbers to the Conversation we created in the [simple conversation with user calling](/stitch/in-app-voice/guides/calling-users/javascript) getting started guide. We'll deal with member call events that trigger on the application and call state events that trigger on the Call object.
+In this getting started guide we'll cover adding call methods to make phone calls from the application we created in the [simple conversation with user calling](/stitch/in-app-voice/guides/calling-users/javascript) guide. We'll deal with member call events that trigger on the application and call status events that trigger on the Call object.
 
 ## Concepts
 
 This guide will introduce you to the following concepts.
 
-- **Calls** - calling a phone number from your application without creating a Conversation first
+**Calls** - a method for calling a User in your application. The method essentially wraps the creation of a conversation, adding users to it and finally the audio enabling and disabling for you. At the same time it also generates a Call object.
 
 ## Before you begin
 
-- Ensure you have run through the [previous guide](/stitch/in-app-voice/guides/calling-users/javascript)
-- You should read the [Outbound PSTN Calling NCCO guide](/stitch/in-app-voice/ncco-guide) before completing this quick start guide. In order to make an outbound PSTN call, you'll have to correctly link your application to an answer url with an NCCO. The NCCO guide goes into further detail.
+- Run through the [previous guide](/stitch/in-app-voice/guides/calling-users/javascript)
+- Read the [Outbound PSTN Calling NCCO guide](/stitch/in-app-voice/ncco-guide) before completing this guide. In order to make an outbound phone call(over the telephony or otherwise called, PSTN network), you'll have to correctly link your application to an answer url with an NCCO. The NCCO guide goes into further detail.
 
 
 ## 1 - Update the JavaScript App
