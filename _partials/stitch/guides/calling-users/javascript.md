@@ -16,8 +16,7 @@ This guide will introduce you to the following concepts:
 - **Call Status Events** - `call:status:changed` event that fires on an Application when the status of the Call object changes
 
 ## Before you begin
-
-## 0 - Run through the [previous guide](/stitch/in-app-voice/guides/enable-audio/javascript)
+- Run through the [previous guide](/stitch/in-app-voice/guides/enable-audio/javascript)
 
 ## 1 - Update the JavaScript App
 
