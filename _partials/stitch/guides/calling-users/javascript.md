@@ -24,7 +24,7 @@ We will use the application we have already created for [the first audio getting
 
 ### 1.1 - Add call control UI
 
-First, we'll add the UI for a user to create and end a call to another user. We'll also add UI in order to be notified for an incoming call. We'll hide the `call-incoming` and `call-members` using CSS until the user is interacting with a call. Let's add the UI at the top of the conversations area.
+First, we'll add the UI for a user to start and end a call with another user. We'll also add UI in order to be notified for an incoming call. We'll hide the `call-incoming` and `call-members` using CSS until the user is interacting with a call. Let's add the UI at the top of the conversations area.
 
 ```html
   <style>
@@ -159,7 +159,7 @@ setupUserEvents() {
 }
 ```
 
-If we want to be notified when the [call status](https://developer.nexmo.com/stitch/in-app-voice/call-statuses) changes like for example started, busy, rejected, answered etc, we need to add a listener for `call:status:changed` on the Application. Let's update the `app` promise after `login(userToken)` with the code::
+If we want to be notified when the [call status](/stitch/in-app-voice/call-statuses) changes (i.e. `started`, `busy`, `rejected`, `answered`) we need to add a listener for `call:status:changed` on the Application. Let's update the `app` promise after `login(userToken)` with the code:
 
 ```javascript
 ...
@@ -179,9 +179,9 @@ Now run `index.html` in two side-by-side browser windows, making sure to login w
 
 Thats's it! Your page should now look something like [this](https://github.com/Nexmo/stitch-js-quickstart/blob/master/calling-users/index.html).
 
-### 1.6 - Bonus: Phone to App Calls
+### 1.6 - Calling an User from a phone
 
-After you've set up you're app to handle incoming calls, you can follow the [Phone to App Calls Guide](https://developer.nexmo.com/stitch/in-app-voice/inbound-pstn) to find out how you can connect calls from phones, in addition to calls from other app users, to app user via the Voice API.
+After you've set up your app to handle incoming calls, you can follow the [Phone to App Calls Guide](/stitch/in-app-voice/inbound-pstn) to learn how to connect calls from phones or other app users via the Voice API.
 
 ## Where next?
 
