@@ -11,7 +11,7 @@ In this guide we'll cover adding call methods to the application we have created
 
 This guide will introduce you to the following concepts:
 
-- **Calls** - a method for calling a User in your application. The method essentially wraps the creation of a conversation, adding users to it and finally the audio enabling and disabling for you. At the same time it also generates a Call object.
+- **Calls** - calling an User in your application without creating a Conversation first.
 - **Call Events** - `member:call` event that fires on an Application
 - **Call Status Events** - `call:status:changed` event that fires on an Application when the status of the Call object changes
 
@@ -121,7 +121,8 @@ Next, we'll add a listener for `member:call` events on the app, so that we can l
 
 ### 1.4 - Add Call functionality
 
-With these first parts we're listening `member:call` events on the application. Now let's see how to trigger those type of events, by making a call. Let's add an event listener for `callForm` inside the `setupUserEvents()` method. We'll take a list of user names from the input and pass those to the `call()` method on the Application object.
+With these first parts we're listening `member:call` events on the application. Now let's see how to trigger those type of events, by making a call. Let's add an event listener for `callForm` inside the `setupUserEvents()` method. We'll take a list of user names from the input and pass those to the `call()` method on the Application object. The `call()` method wraps the creation of a conversation, adding users to it and finally the audio enabling and disabling for you. At the same time it also generates a Call object.
+
 
 ```javascript
 setupUserEvents() {
