@@ -11,7 +11,7 @@ In this getting started guide we'll cover adding call methods to make phone call
 
 This guide will introduce you to the following concepts.
 
-**Phone Calls** - a method for calling a phone device from your application. The method works just like the `call()` method we covered in the previous App to App Call Guide. So essentially `callPhone()` wraps the creation of a conversation, adding users to it and finally the audio enabling and disabling for you. At the same time it also generates a Call object.
+**Calls** - calling a phone number from your application without creating a Conversation first
 
 ## Before you begin
 
@@ -50,7 +50,7 @@ constructor() {
 
 ### 1.2 - Add `callPhone` handler
 
-All the call control UI is in place, so we'll need to add only a method for calling phones, using the `callPhone` method on the application. Let's update `setupUserEvents` with a listener for `callPhoneForm`:
+All the call control UI is in place, so we'll need to add only a method for calling phones, using the `callPhone` method on the application. The `callPhone` method works just like the `call()` method we covered in the previous [App to App Call Guide](/stitch/in-app-voice/guides/calling-users). `callPhone()` will create a conversation, add users to it, and enable audio. This method will also generates a Call object. Let's update `setupUserEvents` with a listener for `callPhoneForm`:
 
 ```javascript
 this.callPhoneForm.addEventListener('submit', (event) => {
@@ -59,7 +59,7 @@ this.callPhoneForm.addEventListener('submit', (event) => {
   this.app.callPhone(this.callPhoneForm.children.phonenumber.value)
 })
 ```
-Note that this method will create a brand new conversation object for the call. If you would like the interaction to be part of an already existing conversation, you can do so through the NCCO. Read more about how to do that via the [NCCO Reference](/stitch/in-app-voice/ncco-guide).
+Note that this method will create a brand new conversation object for the call. If you would like the interaction to be part of an already existing conversation, you can do so through the NCCO. Read more about how to do that via the [NCCO Reference](/stitch/in-app-voice/ncco-guide#making-calls-as-part-of-existing-conversations).
 
 ### 1.3 - Open the conversation a browser window
 
