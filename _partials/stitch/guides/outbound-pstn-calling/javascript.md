@@ -11,7 +11,7 @@ In this getting started guide we'll cover adding call methods to make phone call
 
 This guide will introduce you to the following concepts.
 
-**Calls** - calling a phone number from your application without creating a Conversation first
+**Calls** - calling a phone number from your application 
 
 ## Before you begin
 
@@ -50,7 +50,7 @@ constructor() {
 
 ### 1.2 - Add `callPhone` handler
 
-All the call control UI is in place, so we'll need to add only a method for calling phones, using the `callPhone` method on the application. The `callPhone` method works just like the `call()` method we covered in the previous [App to App Call Guide](/stitch/in-app-voice/guides/calling-users). `callPhone()` will create a conversation, add users to it, and enable audio. This method will also generates a Call object. Let's update `setupUserEvents` with a listener for `callPhoneForm`:
+All the call control UI is in place, so we'll need to add only a method for calling phones, using the `callPhone` method on the application. The `callPhone` method works just like the `call()` method we covered in the previous [App to App Call Guide](/stitch/in-app-voice/guides/calling-users). `callPhone()` will create a conversation, add users to it and enable audio. Let's update `setupUserEvents` with a listener for `callPhoneForm`:
 
 ```javascript
 this.callPhoneForm.addEventListener('submit', (event) => {
