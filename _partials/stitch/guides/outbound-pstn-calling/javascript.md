@@ -3,20 +3,20 @@ title: JavaScript
 language: javascript
 ---
 
-# Outbound PSTN Calling guide for JavaScript
+# App to Phone Calls for JavaScript
 
-In this getting started guide we'll cover adding call methods for phone numbers to the Conversation we created in the [simple conversation with user calling](/stitch/in-app-voice/guides/calling-users/javascript) getting started guide. We'll deal with member call events that trigger on the application and call state events that trigger on the Call object.
+In this getting started guide we'll cover adding call methods to make phone calls from the application we created in the [simple conversation with user calling](/stitch/in-app-voice/guides/calling-users/javascript) guide. We'll deal with member call events that trigger on the application and call status events that trigger on the Call object.
 
 ## Concepts
 
 This guide will introduce you to the following concepts.
 
-- **Calls** - calling a phone number from your application without creating a Conversation first
+**Calls** - calling a phone number from your application 
 
 ## Before you begin
 
-- Ensure you have run through the [previous guide](/stitch/in-app-voice/guides/calling-users/javascript)
-- You should read the [Outbound PSTN Calling NCCO guide](/stitch/in-app-voice/ncco-guide) before completing this quick start guide. In order to make an outbound PSTN call, you'll have to correctly link your application to an answer url with an NCCO. The NCCO guide goes into further detail.
+- Run through the [previous guide](/stitch/in-app-voice/guides/calling-users/javascript)
+- Read the [NCCO for Outbound Phone Calls guide](/stitch/in-app-voice/ncco-guide) before completing this guide. In order to make an outbound phone call (over the telephony or otherwise called, PSTN network), you'll have to correctly link your application to an answer url with an NCCO. The NCCO guide goes into further detail.
 
 
 ## 1 - Update the JavaScript App
@@ -50,7 +50,7 @@ constructor() {
 
 ### 1.2 - Add `callPhone` handler
 
-All the call control UI is in place, so we'll need to add only a method for calling phones, using the `callPhone` method on the application. Let's update `setupUserEvents` with a listener for `callPhoneForm`:
+All the call control UI is in place, so we'll need to add only a method for calling phones, using the `callPhone` method on the application. The `callPhone` method works just like the `call()` method we covered in the previous [App to App Call Guide](/stitch/in-app-voice/guides/calling-users). `callPhone()` will create a conversation, add users to it and enable audio. Let's update `setupUserEvents` with a listener for `callPhoneForm`:
 
 ```javascript
 this.callPhoneForm.addEventListener('submit', (event) => {
@@ -59,6 +59,7 @@ this.callPhoneForm.addEventListener('submit', (event) => {
   this.app.callPhone(this.callPhoneForm.children.phonenumber.value)
 })
 ```
+Note that this method will create a brand new conversation object for the call. If you would like the interaction to be part of an already existing conversation, you can do so through the NCCO. Read more about how to do that via the [NCCO Reference](/stitch/in-app-voice/ncco-guide#making-calls-as-part-of-existing-conversations).
 
 ### 1.3 - Open the conversation a browser window
 

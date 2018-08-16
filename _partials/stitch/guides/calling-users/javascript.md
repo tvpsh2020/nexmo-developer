@@ -3,15 +3,15 @@ title: JavaScript
 language: javascript
 ---
 
-# Call Convenience methods for Stitch and JavaScript
+# App to App Call Convenience method for JavaScript
 
-In this getting started guide we'll cover adding call methods to the Conversation we created in the [simple conversation with audio](/stitch/in-app-voice/guides/enable-audio/javascript) getting started guide. We'll deal with member call events that trigger on the application and call state events that trigger on the Call object.
+In this guide we'll cover adding call methods to the application we have created in the [simple conversation with audio](/stitch/in-app-voice/guides/enable-audio/javascript) guide. We'll deal with member call events that trigger on the application and call state events that trigger on the Call object.
 
 ## Concepts
 
-This guide will introduce you to the following concepts.
+This guide will introduce you to the following concepts:
 
-- **Calls** - calling an User in your application without creating a Conversation first
+- **Calls** - calling a User in your application
 - **Call Events** - `member:call` event that fires on an Application
 - **Call Status Events** - `call:status:changed` event that fires on an Application when a status in the Call changes
 
@@ -21,7 +21,7 @@ source: _partials/stitch/calling-starter-app.md
 
 ### 1.1 - Add call control UI
 
-First, we'll add the UI for a user to call another user, and then see when it's being called. We'll also add UI in order to hang up the call. We'll hide the `call-incoming` and `call-members` using CSS until the user is interacting with a call. Let's add the UI at the top of the conversations area.
+First, we'll add the UI for a user to create and end a call to another user. We'll also add UI in order to be notified for an incoming call. We'll hide the `call-incoming` and `call-members` using CSS until the user is interacting with a call. Let's add the UI at the top of the conversations area.
 
 ```html
   <style>
@@ -91,7 +91,7 @@ showCallMembers(member) {
 }
 ```
 
-We've added some logic in the methods in order to identify the caller as a User in the application or a person calling from a phone. When we receive a phone call into our application, the member is listed as `unknown`.
+We've added some logic in the methods in order to identify the caller as a User in the application or a person calling from a phone (see: [Phone to App Calls Guide](/stitch/in-app-voice/inbound-pstn) on how you can do that). When we receive a phone call into our application, the member is listed as `unknown`.
 
 ### 1.3 - Add `member:call` listener
 
@@ -119,6 +119,7 @@ Next, we'll add a listener for `member:call` events on the app, so that we can l
 ### 1.4 - Add Call functionality
 
 With these first parts we're listening `member:call` events on the application. Now let's see how to trigger those type of events, by making a call. Let's add an event listener for `callForm` inside the `setupUserEvents()` method. We'll take a list of user names from the input and pass those to the `call()` method on the Application object.
+The call() method wraps the creation of a conversation, adding the users to it and finally the audio enabling and disabling.
 
 ```javascript
 setupUserEvents() {
@@ -156,7 +157,7 @@ setupUserEvents() {
 }
 ```
 
-If we want to be notified when the call status changes, we need to add a listener for `call:status:changed` on the Application. Let's update the `app` promise after `login(userToken)` with the code::
+If we want to be notified on [call status](/stitch/in-app-voice/call-statuses) changes such as `started`, `busy`, `rejected`, or `answered`, we need to add a listener for `call:status:changed` on the Application. Let's update the `app` promise after `login(userToken)` with the code:
 
 ```javascript
 ...
@@ -176,11 +177,9 @@ Now run `index.html` in two side-by-side browser windows, making sure to login w
 
 Thats's it! Your page should now look something like [this](https://github.com/Nexmo/stitch-js-quickstart/blob/master/calling-users/index.html).
 
-### 1.6 - Calling a Stitch user from a phone
+### 1.6 - Calling an App User from a Phone
 
-After you've set up you're app to handle incoming calls, you can follow the [PSTN to IP tutorial](https://www.nexmo.com/blog/2018/05/13/connect-phone-call-to-stitch-in-app-voice-dr/) published on our blog to find out how you can connect a phone call to a Stitch user. Now you can make PSTN Phone Calls via the Nexmo Voice API and receive those calls via the Stitch SDK.
-
-Because we've added logic in this quick start guide in order to differentiate between Users and PSTN phone calls, we don't need to change the quick start code, just set up an NCCO, as shown in the [PSTN to IP tutorial](https://www.nexmo.com/blog/2018/05/13/connect-phone-call-to-stitch-in-app-voice-dr/).
+After you've set up your app to handle incoming calls, you can follow the [Phone to App Calls Guide](/stitch/in-app-voice/inbound-pstn) to find out how in addition to calls from other app users, you can connect calls from phones devices via the Voice API.
 
 ## Where next?
 
