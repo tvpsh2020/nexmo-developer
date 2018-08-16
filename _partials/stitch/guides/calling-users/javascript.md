@@ -15,13 +15,9 @@ This guide will introduce you to the following concepts.
 - **Call Events** - `member:call` event that fires on an Application
 - **Call Status Events** - `call:status:changed` event that fires on an Application when a status in the Call changes
 
-## Before you begin
-
-- Ensure you have run through the [previous guide](/stitch/in-app-voice/guides/enable-audio/javascript)
-
-## 1 - Update the JavaScript App
-
-We will use the application we already created for [the first audio getting started guide](/stitch/in-app-voice/guides/enable-audio/javascript). All the basic setup has been done in the previous guides and should be in place. We can now focus on updating the client-side application.
+```partial
+source: _partials/stitch/calling-starter-app.md
+```
 
 ### 1.1 - Add call control UI
 
