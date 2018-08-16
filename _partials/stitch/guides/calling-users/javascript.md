@@ -94,7 +94,7 @@ showCallMembers(member) {
 }
 ```
 
-We've added some logic in the methods in order to identify the caller as a User in the application or a person calling from a phone (see: [Phone to App Calls Guide](https://developer.nexmo.com/stitch/in-app-voice/inbound-pstn) on how you can do that). When we receive a phone call into our application, the member is listed as `unknown`.
+We've added some logic in the methods in order to identify the caller as a User in the application or a person calling from a phone (see: [Phone to App Calls Guide](/stitch/in-app-voice/inbound-pstn) on how you can do that). When we receive a phone call into our application, the member is listed as `unknown`.
 
 ### 1.3 - Add `member:call` listener
 
@@ -160,7 +160,7 @@ setupUserEvents() {
 }
 ```
 
-If we want to be notified on [call status](https://developer.nexmo.com/stitch/in-app-voice/call-statuses) changes like for example `started`, `busy`, `rejected`, `answered` etc, we need to add a listener for `call:status:changed` on the Application. Let's update the `app` promise after `login(userToken)` with the code:
+If we want to be notified on [call status](/stitch/in-app-voice/call-statuses) changes such as `started`, `busy`, `rejected`, or `answered`, we need to add a listener for `call:status:changed` on the Application. Let's update the `app` promise after `login(userToken)` with the code:
 
 ```javascript
 ...
