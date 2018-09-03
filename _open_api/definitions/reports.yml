@@ -264,7 +264,7 @@ components:
           type: string
           description: UUID for the request.
           example: aaaaaaaa-bbbb-cccc-dddd-0123456789ab
-        status:
+        request_status:
           type: string
           description: The current status of the request.
           example: PENDING
@@ -335,7 +335,7 @@ components:
           example: aaaaaaaa-bbbb-cccc-dddd-0123456789ab
         url:
           type: string
-          description: The URI from which the report can be downloaded. Only appears once report status has changed to SUCCESS.
+          description: The URI from which the report can be downloaded. Only appears once the request status has changed to SUCCESS.
           format: uri
           example: "https://api.nexmo.com/v3/media/aaaaaaaa-bbbb-cccc-dddd-0123456789ab"
         receive_time:
@@ -355,7 +355,7 @@ components:
           example: "https://api.nexmo.com/reports/aaaaaaaa-bbbb-cccc-dddd-0123456789ab"
       required:
         - request_id
-        - status
+        - request_status
         - product
         - account_id
         - start_date
