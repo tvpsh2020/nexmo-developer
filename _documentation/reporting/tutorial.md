@@ -1,3 +1,7 @@
+---
+title: Tutorial
+---
+
 This guide shows you how to generate reports by using a free tool such as Postman. Postman is available via Google Chrome or as a standalone application for most platforms. You can find download links here: https://www.getpostman.com/apps
 
 **_To make your life easier we have provided you with sample queries. Import this [script file](https://www.getpostman.com/collections/aa8f31ac59cc332f8b1e) into Postman and update the keys with your details to get started._**
