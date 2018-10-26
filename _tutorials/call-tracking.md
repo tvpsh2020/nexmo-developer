@@ -1,14 +1,14 @@
 ---
 title: Call tracking
 products: voice/voice-api
-description: Keep track of which campaigns are working well by using different numbers for each one and tracking the incoming calls. This tutorial shows you how to handle incoming calls, connecting them to another number, and track the phone numbers that called each of your Nexmo numbers.
+description: Keep track of which campaigns are working well by using different numbers for each one and tracking the incoming calls. This tutorial shows you how to handle incoming calls, connect them to another number, and track the phone numbers that called each of your Nexmo numbers.
 languages:
     - Node
 ---
 
 # Track Usage Across Your Nexmo Numbers
 
-Data drives our businesses and one good way to do that is to keep track of the calls coming in to your Nexmo numbers. Register different numbers for each of your marketing campaigns and use this tutorial to track which numbers are called and when, in order to improve future campaigns.
+Gain insight into the effectiveness of your customer communications by keeping track of the calls received by your Nexmo numbers. By registering a different number for each of your marketing campaigns, you can see which one performs the best and use that information to improve your future marketing efforts.
 
 Today's example uses NodeJS and all the code is [available on GitHub](https://github.com/Nexmo/node-call-tracker), however the same approach could be used for any other technology stack just as effectively.
 
