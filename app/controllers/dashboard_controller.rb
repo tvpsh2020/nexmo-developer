@@ -18,21 +18,55 @@ class DashboardController < ApplicationController
     end
   end
 
+  def stats_summary
+    return unless created_after || created_before
+    @feedbacks = Feedback::Feedback.joins(:resource)
+
+    if created_after && created_before
+      @feedbacks = @feedbacks.created_between(created_after, created_before)
+    elsif created_after
+      @feedbacks = @feedbacks.created_after(created_after)
+    elsif created_before
+      @feedbacks = @feedbacks.created_before(created_before)
+    end
+
+    grouped_results = @feedbacks.group(["DATE_TRUNC('month', feedback_feedbacks.created_at)", 'feedback_resources.product', 'feedback_feedbacks.sentiment']).count(:id)
+
+    # Reformat in to something usable
+    @summary = {}
+    grouped_results.each do |meta, count|
+      month = meta[0]
+      prod = meta[1] # Can't call it product due to the method defined in this class
+      sentiment = meta[2]
+      next unless prod # We have some feedback from non-product pages. Let's ignore that for now
+      @summary[prod] = @summary[prod] || {}
+      @summary[prod][month] = @summary[prod][month] || {}
+      @summary[prod][month][sentiment] = count
+    end
+
+    # Sort by product, then by month
+    @summary = @summary.sort.to_h
+
+    @summary.each do |product, data|
+      @summary[product] = data.sort.to_h
+    end
+  end
+
   def coverage
-    @supported_languages = %w(
-        curl
-        httpie
-        csharp
-        dotnet
-        java
-        node
-        php
-        python
-        ruby
-        json
-        xml
-    )
-    @product = product.gsub("-", "_") if product
+    @supported_languages = %w[
+      curl
+      httpie
+      csharp
+      dotnet
+      java
+      node
+      php
+      python
+      ruby
+      json
+      xml
+    ]
+    @product = product
 
     @complete_coverage = {}
 
@@ -41,15 +75,40 @@ class DashboardController < ApplicationController
     coverage_from_files if ['all', 'file'].include?(only)
 
     ignore_languages.each do |lang|
-        @supported_languages.delete(lang)
+      @supported_languages.delete(lang)
     end
 
     if hide_response
-        @supported_languages.delete('json')
-        @supported_languages.delete('xml')
+      @supported_languages.delete('json')
+      @supported_languages.delete('xml')
     end
 
-   end
+    @toplevel_summary = {}
+    @complete_coverage.each do |toplevel, blocks|
+      @toplevel_summary[toplevel] = { 'blocks' => 0, 'langs' => {} } unless @toplevel_summary[toplevel]
+      blocks.each do |_section, entries|
+        entries.each do |_name, languages|
+          @toplevel_summary[toplevel]['blocks'] += 1
+          @supported_languages.each do |lang|
+            @toplevel_summary[toplevel]['langs'][lang] = 0 unless @toplevel_summary[toplevel]['langs'][lang]
+            @toplevel_summary[toplevel]['langs'][lang] += 1 if languages[lang]
+          end
+        end
+      end
+    end
+
+    @overall_summary = { 'blocks' => 0, 'langs' => {} }
+    @supported_languages.each do |lang|
+      @overall_summary['langs'][lang] = 0
+    end
+
+    @toplevel_summary.each do |_title, summary|
+      @overall_summary['blocks'] += summary['blocks']
+      summary['langs'].each do |lang, value|
+        @overall_summary['langs'][lang] += value
+      end
+    end
+  end
 
   private
 
@@ -58,9 +117,7 @@ class DashboardController < ApplicationController
   end
 
   def ignore_languages
-    if params[:ignore].present?
-        return params[:ignore].split(",")
-    end
+    return params[:ignore].split(',') if params[:ignore].present?
     []
   end
 
@@ -70,7 +127,7 @@ class DashboardController < ApplicationController
   end
 
   def product
-    params[:product] if params[:product].present?
+    params[:product].presence
   end
 
   def created_before
@@ -82,115 +139,104 @@ class DashboardController < ApplicationController
   end
 
   def hide_response
-    params[:hide_response] if params[:hide_response].present?
+    params[:hide_response].presence
   end
 
   def coverage_from_config
     configs = YAML.load_file("#{Rails.root}/config/code_examples.yml")
     configs.each do |type, value|
-        value.each do |subheader, entries|
-            coverage_from_config_items(subheader, entries, [type])
-        end
+      value.each do |subheader, entries|
+        coverage_from_config_items(subheader, entries, [type])
+      end
     end
   end
 
   def coverage_from_config_items(language, items, stack)
-      stack = stack.clone
-      if @supported_languages.include?(language)
-          source_path = stack.join(".")
+    stack = stack.clone
+    if @supported_languages.include?(language)
+      source_path = stack.join('.')
 
-          if stack.count < 3
-            stack.insert(1, 'top-level')
-          end
+      stack.insert(1, 'top-level') if stack.count < 3
 
-          if stack.count > 3
-              stack = [stack[0], stack[1], stack[2..-1].join('/')]
-          end
+      stack = [stack[0], stack[1], stack[2..-1].join('/')] if stack.count > 3
 
-          x = @complete_coverage
-          stack.each do |key, value|
-            x[key] = {} unless x[key]
-            x = x[key]
-          end
-
-          language = language.downcase
-          language = 'dotnet' if language == 'csharp'
-          x[language] = {
-              'source' =>  items['source'],
-              'source_path' =>  'config: ' + source_path,
-              'type' => 'config'
-          }
-      else
-          stack = stack.clone
-          stack << language
-          items.each do |header, details|
-              coverage_from_config_items(header, details, stack)
-          end
+      x = @complete_coverage
+      stack.each do |key, _value|
+        x[key] = {} unless x[key]
+        x = x[key]
       end
+
+      language = language.downcase
+      language = 'dotnet' if language == 'csharp'
+      x[language] = {
+          'source' =>  items['source'],
+          'source_path' =>  'config: ' + source_path,
+          'type' => 'config',
+      }
+    else
+      stack = stack.clone
+      stack << language
+      items.each do |header, details|
+        coverage_from_config_items(header, details, stack)
+      end
+    end
   end
 
   def coverage_from_yaml
-      Dir.glob("#{Rails.root}/_examples/**/*.yml").each do |e|
-          relative_path = e.gsub("#{Rails.root}/_examples/", "")
-          source_path = "_examples/#{relative_path}"
-          parts = relative_path.split("/")
-          if parts.count < 4
-            parts.insert(1, 'top-level')
-          end
-          source = parts[-1]
-          parts = parts[0..-2]
+    Dir.glob("#{Rails.root}/_examples/**/*.yml").each do |e|
+      relative_path = e.gsub("#{Rails.root}/_examples/", '')
+      source_path = "_examples/#{relative_path}"
+      parts = relative_path.split('/')
+      parts.insert(1, 'top-level') if parts.count < 4
+      source = parts[-1]
+      parts = parts[0..-2]
+      next if parts[0] == 'migrate'
 
-          x = @complete_coverage
-          parts.each do |key, value|
-            x[key] = {} unless x[key]
-            x = x[key]
-          end
-
-          language = source.gsub(".yml","").downcase
-          language = 'dotnet' if language == 'csharp'
-          x[language] = {
-              'source' =>  "_examples/" + relative_path,
-              'source_path' => source_path,
-              'type' => 'yaml'
-          }
+      x = @complete_coverage
+      parts.each do |key, _value|
+        x[key] = {} unless x[key]
+        x = x[key]
       end
+
+      language = source.gsub('.yml', '').downcase
+      language = 'dotnet' if language == 'csharp'
+      x[language] = {
+          'source' =>  '_examples/' + relative_path,
+          'source_path' => source_path,
+          'type' => 'yaml',
+      }
+    end
   end
 
   def coverage_from_files
-      Dir.glob("#{Rails.root}/_examples/**/*").each do |e|
-          relative_path = e.gsub("#{Rails.root}/_examples/", "")
-          next unless File.file?(e)
-          next if File.extname(e) == ".md" # Markdown files are handled by the config coverage
-          next if File.extname(e) == ".yml" # Yaml files are handled by yaml coverage
+    Dir.glob("#{Rails.root}/_examples/**/*").each do |e|
+      relative_path = e.gsub("#{Rails.root}/_examples/", '')
+      next unless File.file?(e)
+      next if File.extname(e) == '.md' # Markdown files are handled by the config coverage
+      next if File.extname(e) == '.yml' # Yaml files are handled by yaml coverage
 
-          source_path = e.clone
-          parts = relative_path.split("/")
-          language = parts.pop
+      source_path = e.clone
+      parts = relative_path.split('/')
+      language = parts.pop
 
-          language = 'dotnet' if language == 'csharp'
+      language = 'dotnet' if language == 'csharp'
 
-          if parts.count < 3
-              parts.insert(1, 'top-level')
-          end
+      parts.insert(1, 'top-level') if parts.count < 3
 
-          if parts.count > 3
-              parts = [parts[0], parts[1], parts[2..-1].join('/')]
-          end
+      parts = [parts[0], parts[1], parts[2..-1].join('/')] if parts.count > 3
+      next if parts[0] == 'migrate'
 
-          x = @complete_coverage
-          parts.each do |key, value|
-            x[key] = {} unless x[key]
-            x = x[key]
-          end
-
-          x[language.downcase] = {
-              'source' =>  "_examples/" + relative_path,
-              'source_path' =>  source_path,
-              'type' => 'file'
-          }
+      x = @complete_coverage
+      parts.each do |key, _value|
+        x[key] = {} unless x[key]
+        x = x[key]
       end
+
+      x[language.downcase] = {
+          'source' =>  '_examples/' + relative_path,
+          'source_path' =>  source_path,
+          'type' => 'file',
+      }
+    end
   end
-
-
-
 end

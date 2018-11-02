@@ -1,5 +1,5 @@
 class ApiErrorsController < ApplicationController
-  before_action :set_error_config
+  before_action :error_config
 
   def index
     @errors_title = 'Generic Errors'
@@ -8,13 +8,14 @@ class ApiErrorsController < ApplicationController
       {
         key: key,
         config: config,
-        errors: scoped_errors(key)
+        errors: scoped_errors(key),
       }
     end
   end
 
   def index_scoped
     @errors_title = @error_config['products'][params[:definition]]['title']
+    @hide_rfc7807_header = @error_config['products'][params[:definition]]['hide_rfc7807_header']
     @errors = scoped_errors(params[:definition])
     render 'index'
   end
@@ -46,7 +47,7 @@ class ApiErrorsController < ApplicationController
     ApiError.new(error)
   end
 
-  def set_error_config
+  def error_config
     @error_config ||= YAML.load_file("#{Rails.root}/config/api-errors.yml")
   end
 end

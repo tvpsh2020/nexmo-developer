@@ -1,4 +1,6 @@
 class BuildingBlockFilter < Banzai::Filter
+  include OcticonsHelper
+
   def call(input)
     input.gsub(/```single_building_block(.+?)```/m) do |_s|
       config = YAML.safe_load($1)
@@ -6,6 +8,7 @@ class BuildingBlockFilter < Banzai::Filter
       @renderer = get_renderer(config['language'])
 
       lexer = CodeLanguageResolver.find(config['language']).lexer
+      lang = config['title'].delete('.')
 
       application_html = generate_application_block(config['application'])
 
@@ -28,17 +31,26 @@ class BuildingBlockFilter < Banzai::Filter
       if highlighted_client_source
         client_url = generate_source_url(config['client'])
         id = SecureRandom.hex
+        create_instructions = @renderer.create_instructions(config['file_name']).render_markdown
         erb = File.read("#{Rails.root}/app/views/building_blocks/_configure_client.html.erb")
         client_html = ERB.new(erb).result(binding)
       end
 
-      erb = File.read("#{Rails.root}/app/views/building_blocks/_write_code.html.erb")
+      add_instructions = @renderer.add_instructions(config['file_name']).render_markdown
+      if config['code_only']
+        erb = File.read("#{Rails.root}/app/views/building_blocks/_code_only.html.erb")
+      else
+        erb = File.read("#{Rails.root}/app/views/building_blocks/_write_code.html.erb")
+      end
+
       code_html = ERB.new(erb).result(binding)
 
-      run_html = @renderer.run_command(config['run_command'], config['file_name'])
+      return code_html if config['code_only']
 
-      prereqs = application_html + dependency_html + client_html
-      prereqs = "<h2>Prerequisites</h2>#{prereqs}" if prereqs
+      run_html = @renderer.run_command(config['run_command'], config['file_name'], config['code']['source'])
+
+      prereqs = (application_html + dependency_html + client_html).strip
+      prereqs = "<h2>Prerequisites</h2>#{prereqs}" unless prereqs.empty?
       prereqs + code_html + run_html
     end
   end
@@ -103,17 +115,28 @@ class BuildingBlockFilter < Banzai::Filter
 
   def generate_application_block(app)
     return '' unless app
-    app['name'] = 'ExampleVoiceProject' unless app['name']
 
     base_url = 'http://demo.ngrok.io'
     base_url = 'https://example.com' if app['disable_ngrok']
 
-    app['event_url'] = "#{base_url}/webhooks/events" unless app['event_url']
-    app['answer_url'] = "#{base_url}/webhooks/answer" unless app['answer_url']
+    app['name'] = 'ExampleProject' unless app['name']
+
+    # We should remove this default once we're sure that all building blocks
+    # have a type set e.g audit
+    app['type'] ||= 'voice'
+
+    if app['type'] == 'voice'
+      app['event_url'] = "#{base_url}/webhooks/events" unless app['event_url']
+      app['answer_url'] = "#{base_url}/webhooks/answer" unless app['answer_url']
+      erb = File.read("#{Rails.root}/app/views/building_blocks/_application_voice.html.erb")
+    elsif ['messages', 'dispatch'].include? app['type']
+      erb = File.read("#{Rails.root}/app/views/building_blocks/_application_messages_dispatch.html.erb")
+    else
+      raise "Invalid application type when creating building block: '#{app['type']}'"
+    end
 
     id = SecureRandom.hex
 
-    erb = File.read("#{Rails.root}/app/views/building_blocks/_application.html.erb")
     ERB.new(erb).result(binding)
   end
 
@@ -124,10 +147,8 @@ class BuildingBlockFilter < Banzai::Filter
 
     # Insert "blob/master" and strip ".repos" - except dotnet that needs "blob/ASPNET" instead
     repo_path = '\\0blob/master/'
-    if code['source'].include?("dotnet")
-      repo_path = '\\0blob/ASPNET/'
-    end
-    file_section = code['source'].sub('.repos', '').sub(/(-quickstart|-building-blocks)\//, repo_path)
+    repo_path = '\\0blob/ASPNET/' if code['source'].include?('dotnet')
+    file_section = code['source'].sub('.repos', '').sub(%r{(-quickstart|-building-blocks)/}, repo_path)
 
     # Line highlighting
     line_section = ''
@@ -143,6 +164,5 @@ class BuildingBlockFilter < Banzai::Filter
     end
 
     start_section + file_section + line_section
-
   end
 end

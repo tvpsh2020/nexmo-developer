@@ -1,6 +1,7 @@
 ---
 title: Signing requests
 description: Add an extra layer of security by sending and receiving signed requests.
+navigation_weight: 4
 ---
 
 # Signing requests
@@ -13,7 +14,7 @@ You use a signature to:
 * Ensure that the message has not been tampered with en-route
 * Defend against interception and later replay
 
-A signature is the [MD5 hash](https://en.wikipedia.org/wiki/MD5) of:
+A signature is an [MD5 hash](https://en.wikipedia.org/wiki/MD5) of:
 
 * The parameters - all the parameters in a request sorted in alphabetic order
 * A timestamp - a UNIX timestamp at UTC + 0 to protect against replay attacks
@@ -36,7 +37,7 @@ The workflow for using signed messages is:
 ![Signing requests workflow](/assets/images/workflow_call_api_outbound.svg)
 
 1. Create a signed [request](/api/sms#request) to send an SMS.
-2. Check the [response codes](/api/sms#status-codes) and ensure that you sent the request correctly.
+2. Check the [response codes](/api/sms#errors) and ensure that you sent the request correctly.
 3. Your message is delivered to the handset. The user's handset returns a delivery receipt.
 4. If you requested signed delivery receipts and inbound messages validate the signature.
 
@@ -47,24 +48,44 @@ When you create a Nexmo account you will be provided a signature secret. These c
 
 To sign your messages:
 
-1. Create a signed [request](/api/sms#request):
+**Create a signed [request](/api/sms#request):**
 
-    ```tabbed_examples
-    source: '_examples/messaging/signing-messages/create-request'
-    ```
+```tabbed_examples
+source: '_examples/messaging/signing-messages/create-request'
+```
 
-2. Check the [response codes](/api/sms#response-codes) to ensure that you sent the request to Nexmo correctly:
+**Check the [response codes](/api/sms#response-codes) to ensure that you sent the request to Nexmo correctly:**
 
-    ```tabbed_examples
-    source: '_examples/messaging/signing-messages/check-response'
-    ```
+```tabbed_examples
+source: '_examples/messaging/signing-messages/check-response'
+```
 
-    If you did not generate the signature correctly the [status](/api/sms#status-codes) is `14, invalid signature`
+If you did not generate the signature correctly the [status](/api/sms#status-codes) is `14, invalid signature`
 
-3. Your message is delivered to the handset. The user's handset returns a delivery receipt.
+Your message is delivered to the handset. The user's handset returns a delivery receipt.
 
-4. If your delivery receipts and inbound messages are signed, validate the signature:
+**If your delivery receipts and inbound messages are signed, validate the signature:**
 
-    ```tabbed_examples
-    source: '_examples/messaging/signing-messages/validate-signature'
-    ```
+```tabbed_examples
+source: '_examples/messaging/signing-messages/validate-signature'
+```
+
+## Troubleshooting signatures
+
+Here are some tips and pitfalls to look out for when working with signed messages.
+
+### Check the response for details
+
+If the message isn't sent as expected, check the response for any [error codes](/api/sms#errors) that were returned. This will usually give you more detail on what to do next.
+
+### Error 14: Invalid Signature
+
+If the text being sent includes any special characters such as `&` (ampersand) or `=` (equals), then these need to be replaced in the text used to create the signature.
+
+A general approach would be:
+
+- Detect that the text includes `&` or `=`.
+- Create a version of the text that uses `_` (underscore) in place of these special characters.
+- Use the sanitised version of the text to create the signature.
+
+The original text can be still be sent/received, the character replacements are only needed to generate the signature.

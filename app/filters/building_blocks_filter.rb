@@ -29,7 +29,7 @@ class BuildingBlocksFilter < Banzai::Filter
     end
 
     tab_link = Nokogiri::XML::Element.new 'a', @document
-    tab_link.content = content[:tab_title]
+    tab_link.inner_html = "<svg><use xlink:href=\"/assets/images/brands/#{content[:language].key}.svg##{content[:language].key}\" /></svg><span>" + content[:tab_title] + '</span>'
     tab_link['href'] = "##{content[:id]}"
 
     tab.add_child(tab_link)
@@ -95,21 +95,24 @@ class BuildingBlocksFilter < Banzai::Filter
     Dir[source_path].map do |content_path|
       source = File.read(content_path)
 
-      content  = YAML.safe_load(source)
+      content = YAML.safe_load(source)
       content[:id] = SecureRandom.hex
       content[:source] = source
       content[:language_key] = content['language']
       content[:platform_key] = content['platform']
       content[:tab_title] = content['title']
 
-      application = ''
+      parent_config = { 'code_only' => @config['code_only'], 'source' => @config['source'].gsub('_examples/', '') }
       if @config['application']
-          application = {'application' => @config['application']}.to_yaml.lines[1..-1].join
+        parent_config = parent_config.merge({ 'application' => @config['application'] })
       end
+
+      parent_config = parent_config.to_yaml.lines[1..-1].join
+
       source = <<~HEREDOC
-```single_building_block
-#{source}#{application}
-```
+        ```single_building_block
+        #{source}\n#{parent_config}
+        ```
       HEREDOC
 
       content[:body] = MarkdownPipeline.new(options).call(source)
@@ -121,15 +124,11 @@ class BuildingBlocksFilter < Banzai::Filter
   def resolve_language(contents)
     contents.map do |content|
       if content[:language_key]
-        content.merge!({
-          :language => CodeLanguageResolver.find(content[:language_key]),
-        })
+        content[:language] = CodeLanguageResolver.find(content[:language_key])
       end
 
       if content[:platform_key]
-        content.merge!({
-          :platform => CodeLanguageResolver.find(content[:platform_key]),
-        })
+        content[:platform] = CodeLanguageResolver.find(content[:platform_key])
       end
 
       content
@@ -149,7 +148,7 @@ class BuildingBlocksFilter < Banzai::Filter
 
     if options[:code_language]
       contents.each_with_index do |content, index|
-        %i{language_key platform_key}.each do |key|
+        %i[language_key platform_key].each do |key|
           active_index = index if content[key] == options[:code_language].key
         end
       end

@@ -1,7 +1,7 @@
 ---
 title: Nexmo Call Control Objects
 navigation_weight: 2
-description: The Nexmo Call Control Objects used to manage your Voice API calls.
+description: To tell Nexmo how to handle a phone call, you must provide Nexmo an Nexmo Call Control Objects (NCCO) when a call is placed or answered. There are various actions available, such as `talk`, `input` and `record`.
 ---
 
 # Nexmo Call Control Objects
@@ -53,7 +53,7 @@ Some actions and options are:
 source: '_examples/voice/ncco/actions'
 ```
 
-For your NCCO to execute correctly, the JSON syntax must be valid. It is better to generate JSON dynamically using a JSON library than to attempt to write it yourself programatically.
+For your NCCO to execute correctly, the JSON syntax must be valid. It is better to generate JSON dynamically using a JSON library than to attempt to write it yourself programmatically.
 
 The actions you can use in an NCCO are:
 

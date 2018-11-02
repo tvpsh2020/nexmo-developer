@@ -1,8 +1,14 @@
 products:
   sms:
     title: SMS API
+    hide_rfc7807_header: true
   redact:
     title: Redact API
+  account/secret-management:
+    title: Secret Rotation API
+  messages-olympus:
+    title: Messages API
+    hide_rfc7807_header: true
 
 generic_errors:
   low-balance:
@@ -22,6 +28,10 @@ generic_errors:
   unprovisioned:
     description: The crendentials provided do not have access to the requested product
     resolution: Check your API key is correct and has been whitelisted
+
+  invalid-api-key:
+    description: The API key provided does not exist in our system, or you do not have access
+    resolution: Modify your request to provide a valid API key
 
   invalid-id:
     description: The ID provided does not exist in our system

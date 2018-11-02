@@ -13,9 +13,8 @@ en:
     in-app-voice: In-App Voice
     in-app-video: In-App Video
     reporting: Reporting
-    messages-and-workflows-apis: Messages and Workflows APIs
-    messages: Messages
-    workflows: Workflows
+    messages: Messages API
+    dispatch: Dispatch API
     us-short-codes: US Short Codes
     sms: SMS
     guides: Guides
@@ -35,3 +34,7 @@ en:
     javascript: JavaScript
     javascript-quickstart: JS Quickstart
     redact: Redact
+    audit: Audit
+    numbers: Numbers
+    secret-management: Secret Management
+    external-accounts: External Accounts API

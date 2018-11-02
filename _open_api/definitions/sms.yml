@@ -2,7 +2,7 @@ openapi: "3.0.0"
 info:
   version: 1.0.0
   title: SMS API
-  description: With the Nexmo SMS API you can send SMS from your account and lookup messages both messages that you've sent as well as messages sent to your virtual numbers.
+  description: With the Nexmo SMS API you can send SMS from your account and lookup messages both messages that you've sent as well as messages sent to your virtual numbers. Numbers are specified in E.164 format.
 servers:
   - url: https://rest.nexmo.com
 paths:
@@ -62,7 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Message'
+                $ref: '#/components/schemas/SMS'
             text/xml:
               schema:
                 $ref: '#/components/schemas/MessageXmlWrapper'
@@ -113,11 +113,11 @@ components:
         - to
       properties:
         from:
-          description: The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see [Global Messaging](/messaging/sms/guides/global-messaging#country-specific-features) for more details.
+          description: The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see [Global Messaging](/messaging/sms/guides/global-messaging#country-specific-features) for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format.
           type: string
-          example: 'Acme Inc'
+          example: 'AcmeInc'
         to:
-          description: The number that the message should be sent to
+          description: The number that the message should be sent to. Numbers are specified in E.164 format. 
           type: string
           minLength: 7
           maxLength: 15
@@ -237,12 +237,12 @@ components:
       properties:
         msisdn:
           type: string
-          description: The phone number that this inbound message was sent from.
+          description: The phone number that this inbound message was sent from. Numbers are specified in E.164 format.
           example: '447700900001'
           required: true
         to:
           type: string
-          description: The phone number the message was sent to. **This is your virtual number**.
+          description: The phone number the message was sent to. **This is your virtual number**. Numbers are specified in E.164 format.
           example: '447700900000'
           required: true
         messageId:
@@ -285,7 +285,7 @@ components:
           example: aaaaaaaa-bbbb-cccc-dddd-0123456789ab
         concat:
           type: string
-          description: True - if this is a concatenated message.
+          description: True - if this is a concatenated message. This field does not exist if it is a single message
           example: 'true'
         concat-ref:
           type: string
@@ -311,7 +311,7 @@ components:
       properties:
         to:
           type: string
-          description: The number the message was sent to
+          description: The number the message was sent to. Numbers are specified in E.164 format.
           example: '447700900000'
         message-id:
           type: string
@@ -321,7 +321,7 @@ components:
             name: messageId
         status:
           type: string
-          description: The status of the message
+          description: The status of the message. See [Troubleshooting Failed SMS](/messaging/sms/guides/troubleshooting-sms).
           example: '0'
         remaining-balance:
           type: string
@@ -360,12 +360,12 @@ components:
       properties:
         msisdn:
           type: string
-          description: The number the message was sent to
+          description: The number the message was sent to. Numbers are specified in E.164 format.
           example: '447700900000'
         to:
           type: string
-          description: The SenderID you set in from in your request
-          example: Acme Inc
+          description: The SenderID you set in `from` in your request.
+          example: AcmeInc
         network-code:
           type: string
           description: The Mobile Country Code Mobile Network Code (MCCMNC) of the carrier this phone number is registered with.
@@ -463,7 +463,7 @@ x-errors:
 
   12:
     description: Desintation unreachable. The message could not be delivered to the phone number.
-    resolution: Check that your `to` number is valid. Make sure to use the country prefix (e.g. `44` for the UK) and not a `0`
+    resolution: Check that your `to` number is valid. Make sure to use the country prefix (e.g. `44` for the UK) and not a `0`. Numbers are specified in E.164 format.
 
   13:
     description: The carrier blocked this message because the content is not suitable for `to` based on age restrictions.)
