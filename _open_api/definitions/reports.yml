@@ -24,6 +24,7 @@ paths:
   "/v1/reports/":
     post:
       summary: Create a report
+      operationId: createReport
       description: Request a report on your account activity
       parameters:
         - name: api_key
@@ -86,6 +87,7 @@ paths:
   "/v1/reports/{request_id}":
     get:
       summary: Get status of report
+      operationId: reportStatus
       description: Retrieve status and metadata about a requested report.
       parameters:
         - name: api_key
@@ -131,6 +133,7 @@ paths:
   "/v3/media/{file_id}":
     get:
       summary: Get report data
+      operationId: reportData
       description: Download a zipped archive of the rendered report. The file is available for download for 72 hours.
       parameters:
         - name: api_key
