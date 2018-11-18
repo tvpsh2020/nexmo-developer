@@ -6,6 +6,7 @@ navigation_weight:
   Number Insight: 4
   Messages: 5
   Dispatch: 6
+  Vonage Business Cloud APIs: 7
   Numbers: 98
   Account: 99
 
@@ -61,6 +62,7 @@ navigation_overrides:
   number-insight:
     svg: 'file-search'
     svgColor: 'orange'
+
   account:
     svg: 'user'
     svgColor: 'blue'
@@ -93,4 +95,8 @@ navigation_overrides:
   conversation:
     svg: 'message'
     svgColor: 'teal'
+    label: 'Developer Preview'
+  vbc:
+    svg: 'phone'
+    svgColor: 'orange'
     label: 'Developer Preview'
