@@ -9,7 +9,7 @@ You will need to paste in a valid JWT. If you don't have one you can create one 
 **1.** Create a temporary application:
 
 ``` shell
-nexmo app:create "Delete Me Later" https://example.com/answer https://example.com/event --keyfile=temp.key --type=messages
+nexmo app:create "Delete Me Later" https://example.com/inbound https://example.com/status --keyfile=temp.key --type=messages
 ```
 
 **2.** Copy the generated Application ID to the clipboard.
