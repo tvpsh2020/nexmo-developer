@@ -134,7 +134,7 @@ module ApplicationHelper
 
         if !child[:is_file?]
           if context.first[:children]
-            ss << "<a class='Vlt-sidemenu__trigger'>"
+            ss << "<span class='Vlt-sidemenu__trigger'>"
 
             if options['svg'] && options['svgColor'] # rubocop:disable Metrics/BlockNesting
               ss << '<svg class="Vlt-' + options['svgColor'] + '"><use xlink:href="/symbol/volta-icons.svg#Vlt-icon-' + options['svg'] + '" /></svg>'
@@ -143,11 +143,18 @@ module ApplicationHelper
             if options['label'] # rubocop:disable Metrics/BlockNesting
               additional_classes = ' '
               additional_classes += 'Vlt-bg-green' if options['label'].casecmp('beta').zero? # rubocop:disable Metrics/BlockNesting
-              ss << '<span class="Vlt-sidemenu__label">'.html_safe + (normalised_title(child) + content_tag(:span, options['label'], class: 'Vlt-badge Vlt-badge--margin-left' + additional_classes)).html_safe + '</span>'.html_safe
+              label = content_tag(:span, options['label'], class: 'Vlt-badge Vlt-badge--margin-left' + additional_classes)
+              state = options['label'].downcase.gsub(' ', '-')
+              if ['beta', 'developer-preview'].include?(state)
+                label = link_to("/product-lifecycle/#{state}") do
+                  label.html_safe
+                end
+              end
+              ss << '<span class="Vlt-sidemenu__label">'.html_safe + (normalised_title(child) + label).html_safe + '</span>'.html_safe
             else
               ss << "<span class='Vlt-sidemenu__label'>#{normalised_title(child)}</span>"
             end
-            ss << '</a>'
+            ss << '</span>'
           else
             ss << "<h5 class='Vlt-sidemenu__title Vlt-sidemenu__title--border'>#{normalised_title(child)}</h5>"
           end
@@ -158,7 +165,14 @@ module ApplicationHelper
             if options['label']
               additional_classes = ' '
               additional_classes += 'Vlt-bg-green' if options['label'].casecmp('beta').zero? # rubocop:disable Metrics/BlockNesting
-              '<span class="Vlt-sidemenu__label">'.html_safe + (normalised_title(child) + content_tag(:span, options['label'], class: 'Vlt-badge Vlt-badge--margin-left' + additional_classes)).html_safe + '</span>'.html_safe
+              label = '<span class="Vlt-sidemenu__label">'.html_safe + (normalised_title(child) + content_tag(:span, options['label'], class: 'Vlt-badge Vlt-badge--margin-left' + additional_classes)).html_safe + '</span>'.html_safe
+              state = options['label'].downcase.gsub(' ', '-')
+              if ['beta', 'developer-preview'].include?(state)
+                return link_to("/product-lifecycle/#{state}") do
+                  label.html_safe
+                end
+              end
+              label
             elsif options['svg']
               ('<svg class="Vlt-' + options['svgColor'] + '"><use xlink:href="/symbol/volta-icons.svg#Vlt-icon-' + options['svg'] + '" /></svg><span class="Vlt-sidemenu__label">').html_safe + normalised_title(child) + '</span>'.html_safe
             else

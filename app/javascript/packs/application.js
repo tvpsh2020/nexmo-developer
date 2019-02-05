@@ -73,6 +73,13 @@ let refresh = () => {
       tag.scrollIntoView(true);
     }
   }
+
+  // If there are any links in the sidebar, we need to be able to click them
+  // and not trigger the Volta accordion
+  $(".Vlt-sidemenu__trigger a").click(function(){
+    window.location = $(this).attr("href");
+    return false;
+  });
 }
 
 $(document).on('nexmo:load', function() {
