@@ -18,7 +18,7 @@ Ensure the following variables are set to your required values using any conveni
 | `TO_NUMBER`   | The phone number you are sending the message to. T-Mobile and Verizon networks are not currently supported. |
 | `IMG_URL`     | The URL of the media you want to send                                                                       |
 
-> **NOTE:** Don't use a leading `+` or `00` when entering a phone number, start with the country code, for example 12018009000.
+> **NOTE:** Don't use a leading `+` or `00` when entering a phone number, start with the country code, for example 14155550105.
 
 ```building_blocks
 source: '_examples/messages/send-mms'
