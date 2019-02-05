@@ -1,5 +1,5 @@
 ---
 title: Billing
-description: Billing
-navigation_weight: 8
+description: Understand how you are billed for the Number Programmability service.
+navigation_weight: 5
 ---

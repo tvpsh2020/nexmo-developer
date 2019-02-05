@@ -1,5 +1,5 @@
 ---
-title: Configuring number programmability
-description: Configuring number programmability
-navigation_weight: 9
+title: Create a Voice API application
+description: The application stores security and configuration information for your interaction with the API.
+navigation_weight: 3
 ---
