@@ -1,5 +1,5 @@
 ---
-title: Routing to a VBC Extension
+title: Route to a VBC Extension
 navigation_weight: 2
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Make Outbound Call
+title: Receive an inbound call
 navigation_weight: 1
 ---
 
