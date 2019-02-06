@@ -20,7 +20,7 @@ Key | Description
 `FROM_NUMBER` | The phone number you are sending the MMS from. (US Short Code and US LVN)
 `TO_NUMBER` | The phone number you are sending the MMS to (T-Mobile and Verizon are not currently supported).
 
-> **NOTE:** Don't use a leading `+` or `00` when entering a phone number, start with the country code, for example 447700900000.
+> **NOTE:** Don't use a leading `+` or `00` when entering a phone number, start with the country code, for example 14155550105.
 
 ```building_blocks
 source: '_examples/dispatch/send-mms-with-failover'
