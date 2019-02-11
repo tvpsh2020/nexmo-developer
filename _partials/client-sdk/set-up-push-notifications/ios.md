@@ -1,5 +1,5 @@
 ---
-title: How to Set Up Nexmo Push Notifications on iOS
+title: iOS
 description: This topic shows you how to set up push notifications using Firebase.
 ---
 

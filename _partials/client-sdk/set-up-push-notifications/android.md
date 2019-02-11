@@ -1,5 +1,5 @@
 ---
-title: How to Set Up Nexmo Push Notifications on Android
+title: Android
 description: This topic shows you how to set up push notifications using Firebase.
 ---
 

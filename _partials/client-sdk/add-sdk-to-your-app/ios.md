@@ -1,5 +1,5 @@
 ---
-title: How to Add the Nexmo Client SDK to your iOS App
+title: iOS
 description: This topic shows you how to add the Nexmo Client SDK to your iOS application.
 ---
 
