@@ -1,10 +1,6 @@
 ---
 title: How to Add the Nexmo Client SDK to your iOS App
-products: client-sdk
-description: This tutorial shows you how to add the Nexmo Client SDK to your iOS application.
-languages:
-    - Objective_C 
-    - Swift
+description: This topic shows you how to add the Nexmo Client SDK to your iOS application.
 ---
 
 # How to Add the Nexmo Client SDK to your iOS App

@@ -1,10 +1,6 @@
 ---
 title: How to Set Up Nexmo Push Notifications on iOS
-products: client-sdk
-description: This tutorial shows you how to set up push notifications using Firebase.
-languages:
-    - Objective_C
-    - Swift
+description: This topic shows you how to set up push notifications using Firebase.
 ---
 
 # How to Set Up Nexmo Push Notifications on iOS
@@ -21,7 +17,7 @@ Download your certificate. In the next step the downloaded certificate name is r
 
 ## Upload your certificate
 
-Obtain a `jwt_dev`, which is a `jwt` without a `sub` claim. More details on how to generate a JWT can be found in the [setup guide](/tutorials/client-sdk-generate-test-credentials#generate-a-user-jwt).
+Obtain a `jwt_dev`, which is a `jwt` without a `sub` claim. More details on how to generate a JWT can be found in the [setup guide](/client-sdk/getting-started/generate-test-credentials#generate-a-user-jwt).
 
 Get your Nexmo Application ID, `app_id`. It can be obtained from [Nexmo Dashboard](https://dashboard.nexmo.com/voice/your-applications).
 

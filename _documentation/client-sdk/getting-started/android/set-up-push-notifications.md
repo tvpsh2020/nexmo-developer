@@ -1,9 +1,6 @@
 ---
 title: How to Set Up Nexmo Push Notifications on Android
-products: client-sdk
-description: This tutorial shows you how to set up push notifications using Firebase.
-languages:
-    - Java
+description: This topic shows you how to set up push notifications using Firebase.
 ---
 
 # How to Set Up Nexmo Push Notifications on Android
@@ -20,7 +17,7 @@ In case you have not done that already, more details can be found in the [offici
 
 ## Provision your server key
 
-Obtain a `jwt_dev`, which is a `jwt` without a `sub` claim. More details on how to generate a JWT can be found in the [setup guide](/tutorials/client-sdk-generate-test-credentials#generate-a-user-jwt).
+Obtain a `jwt_dev`, which is a `jwt` without a `sub` claim. More details on how to generate a JWT can be found in the [setup guide](/client-sdk/getting-started/generate-test-credentials#generate-a-user-jwt).
 
 Get your `server_api_key` from Firebase console. Navigate to Firebase console --> project settings --> CloudMessaging Tab --> `Server key`
 
