@@ -30,9 +30,10 @@ navigation_weight:
   Overview: 1
   Concepts: 2
   Getting Started: 3
-  In-App Messaging: 4
-  In-App Voice: 5
-  In-App Video: 6
+  Developer Guide: 4
+  In-App Messaging: 5
+  In-App Voice: 6
+  In-App Video: 7
 
   Messages API: 1
   Dispatch API: 2
@@ -46,6 +47,10 @@ navigation_overrides:
     svgColor: 'red'
   getting-started:
     navigation_weight: 1
+    svg: 'mind-map'
+    svgColor: 'red'
+  developer-guide:
+    navigation_weight: 2
     svg: 'mind-map'
     svgColor: 'red'
   messaging:

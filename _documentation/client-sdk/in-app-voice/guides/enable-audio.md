@@ -1,6 +1,6 @@
 ---
 title: Enable Audio
-navigation_weight: 1
+navigation_weight: 3
 ---
 
 ```tabbed_content

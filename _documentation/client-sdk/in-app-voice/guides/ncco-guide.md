@@ -1,11 +1,12 @@
 ---
-title:  NCCO Guide for Calling
+title:  How to use NCCOs to Control Voice Calling
 description: A guide on controlling voice calls using NCCOs.
+navigation_weight: 2
 ---
 
-# NCCO Guide for Calling
+# How to use NCCOs to Control Voice Calling
 
-In this guide, we'll demonstrate how to set up a dynamic answer URL with a NCCO that will allow you to configure more complex call flows from within your application via the [Voice API](/voice/voice-api/overview). This includes the ability to make hybrid leg calls from your app (via WebRTC) to a phone (via PSTN) and vice versa. This guide will focus on making calls from your app to a PSTN phone. After completing this guide, you can follow along with the [JavaScript, Android, or iOS guides](/stitch/in-app-voice/guides/outbound-pstn).
+In this topic, you'll see how to set up a dynamic answer URL with a NCCO that will allow you to configure more complex call flows from within your application via the [Voice API](/voice/voice-api/overview). This includes the ability to make hybrid leg calls from your app (via WebRTC) to a phone (via PSTN) and vice versa. This guide will focus on making calls from your app to a PSTN phone. After completing this guide, you can follow along with the [JavaScript, Android, or iOS guides](/stitch/in-app-voice/guides/outbound-pstn).
 
 ## Concepts
 

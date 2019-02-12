@@ -1,9 +1,10 @@
 ---
-title: Call Statuses
+title: How to Understand the Lifecycle of Call Statuses
 description: Information about call statuses such as `ringing`, `answered` and so on.
+navigation_weight: 2
 ---
 
-# Call Statuses
+# How to Understand the Lifecycle of Call Statuses
 
 This topic explains call statuses like started, ringing, answered, rejected, busy, unanswered, timeout, failed, complete and machine. Since everyone is familiar with the phone, these concepts are pretty straightforward.
 

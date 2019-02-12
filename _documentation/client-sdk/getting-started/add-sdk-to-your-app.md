@@ -1,5 +1,5 @@
 ---
-title: Add Client SDK to your App
+title: How to Add the Nexmo Client SDK to your App
 navigation_weight: 3
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Set Up Push Notifications
+title: How to Set Up Push Notifications
 navigation_weight: 2
 ---
 
