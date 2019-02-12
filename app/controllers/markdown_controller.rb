@@ -19,6 +19,44 @@ class MarkdownController < ApplicationController
       current_user: current_user,
     }).call(document)
 
+    @custom_navigation = [
+      {
+        'title' => 'Introduction',
+        'pages' => [
+          {'title' => 'What are the Client SDKs?', 'url' => '#'},
+          {'title' => 'Messaging', 'url' => '#'},
+          {'title' => 'Voice', 'url' => '#'},
+          {'title' => 'Video', 'url' => '#'},
+        ]
+      },
+      {
+        'title' => 'Getting Started',
+        'pages' => [
+          {'title' => 'Create a Nexmo account', 'url' => '#'},
+          {'title' => 'Create a Nexmo application', 'url' => '#'},
+          {'title' => 'Create test users', 'url' => '#'},
+          {'title' => 'Add the Client SDK to your app', 'url' => '#'},
+        ]
+      },
+      {
+        'title' => 'Client SDK Basics',
+        'pages' => [
+          {'title' => 'The Conversation API', 'url' => '#'},
+          {'title' => 'Nexmo CLI', 'url' => '#', 'label' => 'Optional'},
+          {'title' => 'Authentication', 'url' => '#'},
+          {'title' => 'User Management', 'url' => '#'}
+        ]
+      },
+      {
+        'title' => 'Developer Guides',
+        'pages' => [
+          {'title' => 'Push Notifications', 'url' => '#'},
+          {'title' => 'The Conversation API', 'url' => '#'},
+          {'title' => 'User Management', 'url' => '#'}
+        ]
+      }
+    ]
+
     if !Rails.env.development? && @frontmatter['wip']
       @show_feedback = false
       render 'wip', layout: 'documentation'

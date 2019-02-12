@@ -1,0 +1,174 @@
+# Hanselminutes Landing Page Config
+
+title: "Client SDK"
+meta_title: "Client SDK Intro"
+
+rows:
+  - columns:
+    - entries: 
+      - type: header
+        header:
+          title: 
+            text: "Welcome to the Nexmo Client SDK"
+            align: center
+          subtitle:
+            text: "Prebuilt web, iOS and Android SDKs for all of your Messaging, Voice and Video needs"
+            align: center
+            type: large
+          icon: 
+            name: "icon-rocket"
+            color: "blue-dark"
+      - type: action_button
+        action_button:
+          text: "Create a Nexmo account"
+          url: "sign-up?#ref=client-sdk"
+          type: "primary"
+          large: true
+          center_button: true
+  - columns:
+    - entries:
+        - type: line_divider
+  - columns:
+    - entries:
+      - type: call_to_action
+        call_to_action:
+          title: "Messaging"
+          subtitle: "Build a feature-rich chat experience that includes typing indicators and sent, delivered and read receipts."
+          icon: 
+            name: "icon-chat"
+            color: "blue-dark"
+          url: "#"
+    - entries:
+      - type: call_to_action
+        call_to_action:
+          title: "Voice"
+          subtitle: "Nexmo In-App Voice uses WebRTC and includes all the essentials you need to build a feature-rich voice experience."
+          icon: 
+            name: "icon-call"
+            color: "blue-dark"
+          url: "#"
+    - entries:
+      - type: call_to_action
+        call_to_action:
+          title: "Video"
+          subtitle: "Nexmo In-App Video uses WebRTC and includes all the essentials you need to build a feature-rich video experience."
+          icon: 
+            name: "icon-video"
+            color: "blue-dark"
+          url: "#"
+  - columns:
+    - entries:
+        - type: line_divider
+  - columns:
+    - entries:
+      - type: join_slack
+      - type: text
+        text:
+          content: "<center>Connect with the Developer Relations team to ask questions and provide feedback about your experience with the Client SDK</center>"
+  - columns:
+    - entries:
+        - type: line_divider
+  - columns:
+    - entries:
+        - type: section_header
+          section_header:
+            title: Getting Started
+            icon:
+              name: "icon-flash-2"
+              color: "blue-dark"
+  - columns:
+    - width: 2
+      entries:
+      - type: checklist_item
+        checklist_item:
+          step: 1
+          title: Create a Nexmo account
+          text: |
+              You'll need to [create a Nexmo account](#) before you can do anything else. We give you some free credit when you sign up which is more than enough to get started with.
+      - type: checklist_item
+        checklist_item:
+          step: 2
+          title: Create an application
+          text: |
+              Think of an application as a project. It handles authentication and configuration for your project.
+
+              You can create an application [using the API](/api/application.v2), [using the CLI tool](#), or we 
+              can <a id="landing-create-application" data-name="client-sdk Demo App">do it for you</a> to help you get started
+
+              <div id="CreateApplication"></div>
+      - type: checklist_item
+        checklist_item:
+          step: 3
+          title: Create test users
+          text: |
+              In production you'll need to manage your users using the [Conversation API](#) and one of our server-side libraries.
+
+              For now, you can create some test users [using the Nexmo CLI](#), or we can <a id="landing-create-users">create some for you</a>
+
+              <div id="CreateUsers"></div>
+    - width: 2
+      entries:
+      - type: checklist_item
+        checklist_item:
+          step: 4
+          title: Install the Client SDK
+          text: |
+              We have prebuilt SDKs available for the web, iOS and Android.
+
+              * If you're building for the web we recommend our [Javascript SDK](#)
+              * If you're building on iOS you've got a choice! Choose [Objective C](#) or [Swift](#)
+              * If you're building on Android you can choose between [Java](#) and [Kotlin](#)
+
+      - type: checklist_item
+        checklist_item:
+          step: 5
+          title: Core concepts
+          text: |
+              We recommend reading the [Authentication](#) and [Events](#) topics before getting started
+              with the Client SDKs, then familiarising yourself with concepts such as [Conversations](#),
+              [Users](#) and [Members](#)
+      - type: checklist_item
+        checklist_item:
+          step: 6
+          title: Choose what's next
+          text: |
+              Congratulations, you've completed all of the setup! Now it's time to start building your app.
+
+              You choose where to go next! Get started with [Messaging](#),
+              [Voice](#) or [Video](#)
+
+  - columns:
+    - entries:
+        - type: line_divider
+
+  - columns:
+    - entries:
+        - type: section_header
+          section_header:
+            title: Developer Guides
+            icon:
+              name: "icon-flash-2"
+              color: "blue-dark"
+  - columns:
+    - entries:
+      - type: card
+        card:
+          title: Configure push notifications
+          text: |
+              Push notifications are a key part of your application. Without them, your user won't know when
+              their phone is ringing! We make it really easy to integrate push notifications in to your application.
+    - entries:
+      - type: card
+        card:
+          title: Click to Call
+          text: |
+              Ever seen those click-to-call buttons on websites and wondered how they work? Follow our Click to Call
+              guide and learn how you can build it yourself! Have your phone ring every time someone clicks a button 
+              on your website
+    - entries:
+      - type: card
+        card:
+          title: Inviting Users
+          text: |
+              Before a user can participate in a conversation, they need to be invited. You can invite them using
+              the server-side library or using the Client SDK

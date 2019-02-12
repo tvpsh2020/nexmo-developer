@@ -1,0 +1,15 @@
+<% 
+    raise "Missing 'step' key in text landing page block" unless local_assigns['step']
+    raise "Missing 'title' key in text landing page block" unless local_assigns['title']
+    raise "Missing 'text' key in text landing page block" unless local_assigns['text']
+%>
+
+<div class="Vlt-card Nxd-checklist">
+  <div class="Nxd-checklist__item">
+    <span><%= local_assigns['step'] %></span>
+    <div class="Nxd-checklist__content">
+      <h4 class="Vlt-margin--top2"><%= local_assigns['title'] %></h4>
+      <p><%= local_assigns['text'].render_markdown %></p>
+    </div>
+  </div>
+</div>

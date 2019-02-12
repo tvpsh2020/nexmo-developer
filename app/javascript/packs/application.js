@@ -25,6 +25,8 @@ import Feedback from './Feedback'
 import Concatenation from './Concatenation'
 import APIStatus from './APIStatus'
 import BuildingBlockEvents from './BuildingBlockEvents'
+import CreateApplication from './CreateApplication'
+import CreateUsers from './CreateUsers'
 
 import {
   preventSamePage as turbolinksPreventSamePage,
@@ -58,6 +60,16 @@ let refresh = () => {
 
   if (document.getElementById('ConcatenationComponent')) {
     ReactDOM.render(<Concatenation/>, document.getElementById('ConcatenationComponent'))
+  }
+
+  if (document.getElementById('CreateApplication')) {
+    $("#landing-create-application").click(function(){ $("#CreateApplication").slideDown(); })
+    ReactDOM.render(<CreateApplication/>, document.getElementById('CreateApplication'))
+  }
+
+  if (document.getElementById('CreateUsers')) {
+    $("#landing-create-users").click(function(){ $("#CreateUsers").slideDown(); })
+    ReactDOM.render(<CreateUsers/>, document.getElementById('CreateUsers'))
   }
 
   // If we're on a two pane page, make sure that the main pane is focused

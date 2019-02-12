@@ -228,4 +228,22 @@ module ApplicationHelper
       c
     end.join(' ')
   end
+
+  def custom_navigation(nav)
+    s = ''
+    s << '<ul class="Vlt-sidemenu Vlt-sidemenu--rounded navigation js-navigation">'
+    nav.each do |section|
+      s << '<li role="separator"> <h5 class="Vlt-sidemenu__title Vlt-sidemenu__title--border">'+section['title']+'</h5> </li>'
+      section['pages'].each do |page|
+        s << '<li><a class="Vlt-sidemenu__link" href="'+page['url']+'"><span class="Vlt-sidemenu__label">' + page['title'] + '</span>'
+        if page['label']
+          s << "<span class='Vlt-badge'>#{page['label']}</span>"
+        end
+        s << '</a></li>'
+        end
+    end
+    s << '</ul>'
+
+    s.html_safe
+  end
 end

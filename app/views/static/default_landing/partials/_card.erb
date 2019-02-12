@@ -1,0 +1,9 @@
+<% 
+    raise "Missing 'title' key in text landing page block" unless local_assigns['title']
+    raise "Missing 'text' key in text landing page block" unless local_assigns['text']
+%>
+
+<div class="Vlt-card">
+  <h4><%= local_assigns['title'] %></h4>
+  <p><%= local_assigns['text'].render_markdown %></p>
+</div>
