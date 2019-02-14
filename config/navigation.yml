@@ -11,9 +11,9 @@ navigation_weight:
   Vonage Business Cloud: 7
 
   Number Programmability: 1
-  Account API: 2
-  Extension API: 3
-  User API: 4
+  Account: 2
+  Extension: 3
+  User: 4
 
   Overview: 1
   Developer Preview: 2
