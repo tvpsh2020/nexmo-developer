@@ -30,10 +30,10 @@ To use the Number Programmability service, you need:
 
 You must then:
 
-* [Add the Number Programmability service]() to your VBC account
-* [Configure the Number Programmability service]() with one or more VBC numbers
-* [Create a Nexmo Voice API application]() to store security and configuration information
-* [Link your VBC number(s)]() to the Voice API application
+1. [Add the Number Programmability service]() to your VBC account
+2. [Configure the Number Programmability service]() with one or more VBC numbers
+3. [Create a Nexmo Voice API application]() to store security and configuration information
+4. [Link your VBC number(s)]() to the Voice API application
 
 ## Using the Number Programmability service
 
