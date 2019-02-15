@@ -14,7 +14,7 @@ A Nexmo Voice Application stores configuration information such as details of th
 
 You can create Nexmo Voice Applications by any of the following methods:
 
-* Using the Nexmo Developer Dashboard.
+* Using the [Nexmo Developer Dashboard](https://dashboard.nexmo.com/voice/create-application).
 * Using the [Nexmo CLI](/tools).
 * Programmatically, using the [Nexmo Application API](/api/application). 
 
