@@ -3,4 +3,20 @@ title: Receive an inbound call
 navigation_weight: 1
 ---
 
-# Before you begin
+# Receive an inbound call
+
+This building block shows you how to receive an inbound call on your Vonage Business Cloud programmable number.
+
+## Example
+
+```building_blocks
+source: '_examples/voice/receive-an-inbound-call'
+application:
+  type: voice
+  name: 'Receive Inbound Call Example'
+```
+
+## Try it out
+
+When you call your Vonage Business Cloud programmable number you will hear a text-to-speech message.
+
