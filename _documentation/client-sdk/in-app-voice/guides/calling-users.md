@@ -1,6 +1,11 @@
 ---
 title: App to App Calls
+<<<<<<< HEAD
 navigation_weight: 4
+=======
+description: This topic describes how to make a voice call between apps.
+navigation_weight: 2
+>>>>>>> master
 ---
 
 ```tabbed_content

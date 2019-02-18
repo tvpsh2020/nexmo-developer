@@ -1,10 +1,10 @@
 ---
-title: How to create JWTs and ACLs
-description: How to create JWTs and ACLs
+title: How to generate JWTs
+description: This topic explains how to generate JWTs for use in your app. JSON Web Tokens (JWTs) and Access Control Lists (ACLs) are a key concept to understand in order to authenticate your apps and users.
 navigation_weight: 4
 ---
 
-# JWT and ACL overview
+# How to generate JWTs
 
 ## JWTs
 
@@ -130,4 +130,4 @@ Nexmo::generateJwt([
 
 ### Other languages
 
-Creating a JWT with the appropriate claims for authenticating a Nexmo user is not currently provided in any of the other Nexmo Client Libraries. Instead, we encourage you to use your JWT library of choice to create a new JWT with the [Sample JWT Payload](#sample-jwt-payload). [JWT.io](https://jwt.io/#libraries-io) has a selection of libraries for generating JWTs in multiple languages.
+Creating a JWT with the appropriate claims for authenticating a Nexmo user is not currently provided in any of the other Nexmo Client Libraries. Instead, you are encourage you to use your JWT library of choice to create a new JWT with the [Sample JWT Payload](#sample-jwt-payload). [JWT.io](https://jwt.io/#libraries-io) has a selection of libraries for generating JWTs in multiple languages.
