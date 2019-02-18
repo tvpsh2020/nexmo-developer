@@ -1,5 +1,6 @@
 ---
 title: Overview
+description: Overview of in-app video
 ---
 
 # In-App Video Overview [Early Access]
