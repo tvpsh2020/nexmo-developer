@@ -1,7 +1,7 @@
 ---
 title:  How to use NCCOs to Control Voice Calling
 description: A guide on controlling voice calls using NCCOs.
-navigation_weight: 2
+navigation_weight: 3
 ---
 
 # How to use NCCOs to Control Voice Calling

@@ -1,11 +1,7 @@
 ---
 title: Phone to App Calls
-<<<<<<< HEAD
-navigation_weight: 5
-=======
 description: This topic shows you how to handle an inbound phone call in your app.
-navigation_weight: 3
->>>>>>> master
+navigation_weight: 6
 ---
 
 # Phone to App Calls
