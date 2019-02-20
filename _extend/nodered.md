@@ -19,7 +19,7 @@ Node-RED has a thriving ecosystem of other nodes to connect to different service
 
 ## Resources
 * [GitHub Repository](https://github.com/nexmo/nexmo-nodered)
-* [Node RED ](https://nodered.org)
+* [Node-RED](https://nodered.org)
 * [Example flows using Nexmo](https://flows.nodered.org/?term=nexmo&type=flow&num_pages=1)
 * [Getting Started Video](https://youtu.be/cfdNm1xII2A)
 
