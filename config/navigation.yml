@@ -104,3 +104,6 @@ navigation_overrides:
     svg: 'phone'
     svgColor: 'red'   
     label: 'Beta'    
+  contribute:
+    administration:
+      navigation_weight: 9999
