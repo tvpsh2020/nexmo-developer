@@ -25,9 +25,17 @@
   <nav id="subnav" class="Nxd-header__sub" data-turbolinks="false">
     <a id="Vlt-sidenav-mobile-trigger"><svg><use xlink:href="/symbol/volta-icons.svg#Vlt-icon-menu"></use></svg></a>
 
-    <div class="Nxd-header__sub__menu">
-      <a href="/documentation" class="Vlt-tabs__link <%= @navigation == :documentation ? 'Vlt-tabs__link_active' : '' %>">Documentation</a>
-      <a href="/tutorials" class="Vlt-tabs__link <%= @navigation == :tutorials ? 'Vlt-tabs__link_active' : '' %>">Tutorials</a>
+    <div class="Vlt-header__menu">
+      <a class="Vlt-tabs__link" href="/messaging/sms">SMS</a>
+      <a class="Vlt-tabs__link" href="/messages/overview">Messages API</a>
+      <a class="Vlt-tabs__link" href="/voice/voice-api">Voice</a>
+      <a class="Vlt-tabs__link" href="/verify">Verify</a>
+      <a class="Vlt-tabs__link" href="/number-insight">Number Insight</a>
+      <a class="Vlt-tabs__link" href="/client-sdk/overview">Client SDKs</a>
+      <a class="Vlt-tabs__link" href="/documentation">View all Docs</a>
+    </div>
+
+    <div class="Vlt-header__menu Vlt-right">
       <a href="/api" class="Vlt-tabs__link <%= @navigation == :api ? 'Vlt-tabs__link_active' : '' %>">API Reference</a>
       <a href="/tools" class="Vlt-tabs__link <%= @navigation == :tools ? 'Vlt-tabs__link_active' : '' %>">SDKs &amp; Tools</a>
       <a href="/community" class="Vlt-tabs__link <%= @navigation == :community ? 'Vlt-tabs__link_active' : '' %>">Community</a>
