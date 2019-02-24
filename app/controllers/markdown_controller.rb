@@ -1,8 +1,8 @@
 class MarkdownController < ApplicationController
-  before_action :set_navigation
   before_action :set_product
   before_action :set_document
   before_action :set_namespace
+  before_action :set_navigation
 
   def show
     redirect = Redirector.find(request)
@@ -58,7 +58,7 @@ class MarkdownController < ApplicationController
     else
       @namespace_path = "_documentation/#{@product}"
       @namespace_root = '_documentation'
-      @sidenav_root = "#{Rails.root}/_documentation"
+      @sidenav_root = "#{Rails.root}/_documentation/#{@product}"
     end
   end
 

@@ -43,7 +43,15 @@ class ApplicationController < ActionController::Base
 
   def set_code_language
     return unless request.params[:code_language]
-    @code_language = CodeLanguageResolver.find(request.params[:code_language])
+
+    # If it errors, assume that there is no code language and it's just a greedy regex
+    # And use what we captured as part of the document
+    begin
+        @code_language = CodeLanguageResolver.find(request.params[:code_language])
+      rescue StandardError
+        @code_language = nil
+        params[:document] += "/#{params[:code_language]}"
+      end
   end
 
   def ssl_configured?

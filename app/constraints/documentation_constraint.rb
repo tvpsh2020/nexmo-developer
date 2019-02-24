@@ -1,6 +1,6 @@
 class DocumentationConstraint
   def self.documentation
-    code_language.merge(product)
+    code_language.merge(product_with_parent)
   end
 
   def self.code_language_list
