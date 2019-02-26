@@ -14,6 +14,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GithubCards from './GithubCards'
 import TabbedExamples from './TabbedExamples'
+import VoltaTabbedExamples from './VoltaTabbedExamples'
 import Format from './Format'
 import JsSequenceDiagrams from './JsSequenceDiagrams'
 import Navigation from './Navigation'
@@ -25,6 +26,7 @@ import Feedback from './Feedback'
 import Concatenation from './Concatenation'
 import APIStatus from './APIStatus'
 import BuildingBlockEvents from './BuildingBlockEvents'
+import JWTGenerator from './JWTGenerator'
 
 import {
   preventSamePage as turbolinksPreventSamePage,
@@ -41,12 +43,17 @@ let refresh = () => {
   GithubCards()
   JsSequenceDiagrams()
   new TabbedExamples
+  new VoltaTabbedExamples
   new Format
   Modals()
   APIStatus()
   Scroll()
   Navigation()
   BuildingBlockEvents()
+
+  if (document.getElementById('jwtGenerator')) {
+    ReactDOM.render(<JWTGenerator/>, document.getElementById('jwtGenerator'))
+  }
 
   if (document.getElementById('SearchComponent')) {
     ReactDOM.render(<Search/>, document.getElementById('SearchComponent'))
