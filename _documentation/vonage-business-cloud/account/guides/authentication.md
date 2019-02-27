@@ -1,5 +1,5 @@
 ---
 title: Authentication
-description: Authentication
-navigation_weight: 2
+description: Learn how to access the APIs securely
+navigation_weight: 3
 ---
