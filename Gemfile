@@ -50,9 +50,6 @@ gem 'rouge', '~> 2.0.7'
 # Toolkit for processing input using filters and pipelines
 gem 'banzai', '~> 0.1.2'
 
-# ZURB Foundation on Sass/Compass
-#gem 'foundation-rails', '6.4.1.2'
-
 # Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many features is the ability to search documents via XPath or CSS3 selectors.
 gem 'nokogiri', '~> 1.8.5'
 
