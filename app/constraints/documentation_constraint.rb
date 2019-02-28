@@ -25,7 +25,7 @@ class DocumentationConstraint
       'conversation',
       'messages',
       'dispatch',
-      'vonage-business-cloud'
+      'vonage-business-cloud',
     ]
   end
 
@@ -56,7 +56,7 @@ class DocumentationConstraint
       'vonage-business-cloud/number-programmability',
       'vonage-business-cloud/account',
       'vonage-business-cloud/extension',
-      'vonage-business-cloud/user'
+      'vonage-business-cloud/user',
     ]
   end
 
