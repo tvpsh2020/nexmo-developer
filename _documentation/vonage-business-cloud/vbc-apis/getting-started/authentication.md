@@ -18,7 +18,7 @@ Once you have [created your application](), you need to configure it so that it 
 
   ![Screenshot showing the Production Keys tab of the My Applications page](/assets/images/vbc/production-keys.png)
 
-  > Note the list of Grant Types. The grant type is the method OAuth uses to generate an access token. The `authorization code` grant type is the one most web and mobile apps use and this is selected by default (`Code`).
+  > Note the list of Grant Types. The [grant type](https://oauth.net/2/grant-types/) is the method OAuth uses to generate an access token. The `authorization code` grant type is the one most web and mobile apps use and this is selected by default (`Code`).
 
 ## Generating the authentication keys
 

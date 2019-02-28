@@ -18,7 +18,7 @@ To work with the Vonage Business Cloud APIs, you need to create an Application.
 
 3. Click "Add Application" at the top of the page.
 
-4. In the Add Application dialog, enter a name and optionally a description for your application, so that you can locate it easily later. You can limit the maximum number of requests for each access token in the "Per Token Quota" dropdown if you want to restrict the number of requests. By default it is "Unlimited". Then click the "Add" button.
+4. In the Add Application dialog, enter a name and optionally a description for your Application, so that you can locate it easily later. You can limit the maximum number of requests that each access token allows (see [authentication](/vonage-business-cloud/account/guides/authentication)) in the "Per Token Quota" dropdown. By default it is "Unlimited". Then click the "Add" button.
 
     ![Screenshot showing the Add Application dialog](/assets/images/vbc/create-application.png)
 

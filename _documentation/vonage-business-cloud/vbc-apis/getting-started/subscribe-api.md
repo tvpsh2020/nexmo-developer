@@ -10,7 +10,7 @@ Now that you have created your Application and configured authentication, you ca
 
 1. Click the API Directory link in the left-hand navigation menu.
 
-2. Locate th "VBC-Provisioning-Developer" API and click "Go".
+2. Locate the "VBC-Provisioning-Developer" API and click "Go".
 
 3. From the "My Applications" drop-down in the right-hand corner of the page, select your Application and click "Subscribe":
 
