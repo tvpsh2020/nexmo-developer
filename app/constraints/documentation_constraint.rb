@@ -54,9 +54,9 @@ class DocumentationConstraint
       'messages',
       'dispatch',
       'vonage-business-cloud/number-programmability',
-      'vonage-business-cloud/account',
-      'vonage-business-cloud/extension',
-      'vonage-business-cloud/user',
+      'vonage-business-cloud/vbc-apis/account-api',
+      'vonage-business-cloud/vbc-apis/extension-api',
+      'vonage-business-cloud/vbc-apis/user-api',
     ]
   end
 

@@ -75,6 +75,10 @@ en:
     external-accounts: External Accounts API
     vonage-business-cloud: Vonage Business Cloud
     number-programmability: Number Programmability
-    extension: Extension
+    vbc-apis: VBC APIs
+    account-api: Account API
+    extension-api: Extension API
+    user-api: User API
+    getting-started: Getting Started
 
     administration: Administration
